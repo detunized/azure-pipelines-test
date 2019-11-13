@@ -27,7 +27,7 @@ jobs:
     displayName: Build
 
   - bash: "dotnet test --no-build -c Release --logger trx sol.sln"
-    displayName: Build
+    displayName: Test
 
   - publish: .
     artifact: package-windows
