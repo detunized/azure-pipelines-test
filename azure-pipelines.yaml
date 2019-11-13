@@ -47,9 +47,6 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - bash: 'false'
-    displayName: 'fail'
-
   - bash: 'compgen -c | sort'
     displayName: 'compgen'
 
@@ -78,6 +75,8 @@ jobs:
     vmImage: 'ubuntu-latest'
 
   steps:
+  - checkout: none
+
   - download: current
     artifact: package-linux
 
