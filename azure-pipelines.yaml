@@ -12,7 +12,25 @@ jobs:
 # Windows
 #
 
-# TODO:
+- job: Windows
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  variables:
+    framework: 'netcoreapp3.0'
+    solution: 'password-manager-access.sln'
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Release'
+
+  steps:
+  - bash: 'env'
+    displayName: 'env'
+
+  - bash: 'echo yo > test.txt'
+    displayName: 'make test file'
+
+  - publish: .
+    artifact: package-windows
 
 #
 # Linux
@@ -38,11 +56,8 @@ jobs:
   - bash: 'echo yo > test.txt'
     displayName: 'make test file'
 
-  - bash: 'pwd; ls -lR'
-    displayName: 'list files'
-
   - publish: .
-    artifact: package
+    artifact: package-linux
 
 #
 # Release to GitHub
@@ -51,7 +66,7 @@ jobs:
 - job: Release
 
   dependsOn:
-  #- Windows
+  - Windows
   - Linux
 
   condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
@@ -61,19 +76,10 @@ jobs:
 
   steps:
   - download: current
-    artifact: package
-
-  - bash: 'pwd; ls -lR'
-    displayName: 'pwd, ls'
+    artifact: package-linux
 
   - bash: 'ls -lR $(Pipeline.Workspace)'
-    displayName: 'ls Workspace'
-
-  - bash: 'env'
-    displayName: 'env'
-
-  - bash: 'compgen -c | sort'
-    displayName: 'compgen'
+    displayName: 'ls workspace'
 
   - task: GitHubRelease@0
     inputs:
