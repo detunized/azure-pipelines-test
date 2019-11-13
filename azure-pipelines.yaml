@@ -33,7 +33,7 @@ jobs:
     displayName: 'pwd, ls'
 
   - bash: 'touch test.txt'
-    displayName: 'touch'
+    displayName: 'echo yo > test.txt'
 
   - publish: .
     artifact: package
