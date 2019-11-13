@@ -72,7 +72,7 @@ jobs:
   - Windows
   - Linux
 
-  condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
+  #condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
 
   pool:
     vmImage: 'ubuntu-latest'
