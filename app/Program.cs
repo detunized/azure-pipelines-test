@@ -7,6 +7,7 @@ namespace app
     {
         static void Main(string[] args)
         {
+            fail
             var c = new lib.Class1();
             Console.WriteLine($"Hello World! {c}");
         }
