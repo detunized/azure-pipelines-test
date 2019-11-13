@@ -63,6 +63,12 @@ jobs:
   - bash: 'ls -lR $(Pipeline.Workspace)'
     displayName: 'ls Workspace'
 
+  - bash: 'env'
+    displayName: 'env'
+
+  - bash: 'echo $(variables["build.sourceBranch"])'
+    displayName: 'echo'
+
   - task: GitHubRelease@0
     inputs:
       gitHubConnection: github-release
