@@ -23,9 +23,6 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - bash: 'false'
-    displayName: 'fail'
-
   - bash: 'env'
     displayName: 'env'
 
@@ -50,6 +47,9 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  - bash: 'false'
+    displayName: 'fail'
+
   - bash: 'compgen -c | sort'
     displayName: 'compgen'
 
