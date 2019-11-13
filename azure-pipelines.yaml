@@ -29,6 +29,11 @@ jobs:
   - bash: "dotnet test --no-build -c Release --logger trx sol.sln"
     displayName: Test
 
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: test/TestResults/*.trx
+
   - publish: .
     artifact: package-windows
 
