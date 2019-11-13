@@ -60,6 +60,9 @@ jobs:
   - bash: 'pwd; ls -lR'
     displayName: 'pwd, ls'
 
+  - bash: 'ls -lR $(Pipeline.Workspace)'
+    displayName: 'ls Workspace'
+
   - task: GitHubRelease@0
     inputs:
       gitHubConnection: github-release
