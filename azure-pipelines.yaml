@@ -30,6 +30,7 @@ jobs:
     displayName: Test
 
   - task: PublishTestResults@2
+    condition: succeededOrFailed()
     inputs:
       testResultsFormat: VSTest
       testResultsFiles: test/TestResults/*.trx
