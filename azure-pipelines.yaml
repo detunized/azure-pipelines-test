@@ -1,0 +1,68 @@
+trigger:
+  branches:
+    include:
+    - master
+  tags:
+    include:
+    - v*
+
+jobs:
+
+#
+# Windows
+#
+
+# TODO:
+
+#
+# Linux
+#
+
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  variables:
+    framework: 'netcoreapp3.0'
+    solution: 'password-manager-access.sln'
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Release'
+
+  steps:
+  - bash: 'pwd; ls -lR'
+    displayName: 'pwd, ls'
+
+  - bash: 'touch test.txt'
+    displayName: 'touch'
+
+  - publish: .
+    artifact: package
+
+#
+# Release to GitHub
+#
+
+- job: Release
+
+  dependsOn:
+  #- Windows
+  - Linux
+
+  #condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - download: current
+    artifact: package
+
+  - bash: 'pwd; ls -lR'
+    displayName: 'pwd, ls'
+
+  - task: GitHubRelease@0
+    inputs:
+      gitHubConnection: github-release
+      assets: $(Pipeline.Workspace)/**/*.txt
+      tagSource: manual
+      tag: test-tag #$(Build.BuildNumber)
