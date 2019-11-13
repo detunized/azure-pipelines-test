@@ -29,11 +29,11 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - bash: 'pwd; ls -lR'
-    displayName: 'pwd, ls'
+  - bash: 'echo yo > test.txt'
+    displayName: 'make test file'
 
-  - bash: 'touch test.txt'
-    displayName: 'echo yo > test.txt'
+  - bash: 'pwd; ls -lR'
+    displayName: 'list files'
 
   - publish: .
     artifact: package
