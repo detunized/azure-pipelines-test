@@ -23,6 +23,9 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  - bash: 'false'
+    displayName: 'fail'
+
   - bash: 'env'
     displayName: 'env'
 
