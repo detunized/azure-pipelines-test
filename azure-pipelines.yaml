@@ -29,11 +29,11 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  - bash: 'compgen -c | sort'
+    displayName: 'compgen'
+
   - bash: 'env'
     displayName: 'env'
-
-  - bash: 'echo $(variables["build.sourceBranch"])'
-    displayName: 'echo'
 
   - bash: 'echo yo > test.txt'
     displayName: 'make test file'
