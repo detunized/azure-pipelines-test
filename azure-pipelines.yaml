@@ -23,11 +23,9 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - bash: 'env'
-    displayName: 'env'
+  - bash: "dotnet build -c Release sol.sln"
+    displayName: Build
 
-  - bash: 'echo yo > test.txt'
-    displayName: 'make test file'
 
   - publish: .
     artifact: package-windows
@@ -69,7 +67,7 @@ jobs:
   - Windows
   - Linux
 
-  #condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
+  condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
 
   pool:
     vmImage: 'ubuntu-latest'
