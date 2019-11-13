@@ -29,6 +29,12 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  - bash: 'env'
+    displayName: 'env'
+
+  - bash: 'echo $(variables["build.sourceBranch"])'
+    displayName: 'echo'
+
   - bash: 'echo yo > test.txt'
     displayName: 'make test file'
 
@@ -66,8 +72,8 @@ jobs:
   - bash: 'env'
     displayName: 'env'
 
-  - bash: 'echo $(variables["build.sourceBranch"])'
-    displayName: 'echo'
+  - bash: 'compgen -c | sort'
+    displayName: 'compgen'
 
   - task: GitHubRelease@0
     inputs:
