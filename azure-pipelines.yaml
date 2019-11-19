@@ -8,7 +8,7 @@ trigger:
 
 jobs:
 
-- job: libfido2-windows
+- job: libfido2_windows
   pool:
     vmImage: windows-2019
 
