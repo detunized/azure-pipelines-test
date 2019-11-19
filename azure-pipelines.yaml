@@ -13,8 +13,8 @@ jobs:
     vmImage: windows-2019
 
   steps:
-    - cmd: 'git clone --branch 1.2.0 --depth 1 https://github.com/Yubico/libfido2.git'
-    - cmd: 'cd libfido2\windows && .\build.ps1'
+  - script: 'git clone --branch 1.2.0 --depth 1 https://github.com/Yubico/libfido2.git'
+  - script: 'cd libfido2\windows && .\build.ps1'
 
 #
 # Windows
