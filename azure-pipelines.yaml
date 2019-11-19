@@ -24,6 +24,9 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
 
+  # Disable for now
+  condition: false
+
   variables:
     framework: 'netcoreapp3.0'
     solution: 'password-manager-access.sln'
@@ -53,6 +56,9 @@ jobs:
 - job: Linux
   pool:
     vmImage: 'ubuntu-latest'
+
+  # Disable for now
+  condition: false
 
   variables:
     framework: 'netcoreapp3.0'
