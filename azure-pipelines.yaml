@@ -14,7 +14,7 @@ jobs:
 
   steps:
   - script: 'git clone --branch 1.2.0 --depth 1 https://github.com/Yubico/libfido2.git'
-  - pwsh: 'build.ps1'
+  - pwsh: 'libfido2\windows\build.ps1'
     workingDirectory: 'libfido2\windows'
 
 #
