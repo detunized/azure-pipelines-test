@@ -8,16 +8,6 @@ trigger:
 
 jobs:
 
-- job: libfido2_windows
-  pool:
-    vmImage: windows-2019
-
-  steps:
-  - script: 'git clone --branch 1.2.0 --depth 1 https://github.com/Yubico/libfido2.git'
-  - powershell: dir
-  - powershell: '$(Build.SourcesDirectory)\libfido2\windows\build.ps1'
-    workingDirectory: '.\libfido2\windows'
-
 #
 # Windows
 #
@@ -97,17 +87,15 @@ jobs:
     vmImage: 'ubuntu-latest'
 
   steps:
-  - checkout: none
+  - bash: 'ci/make-nuget-package.sh $(Build.SourceBranchName)'
+    displayName: Build package
 
-  - download: current
-    artifact: package-linux
-
-  - bash: 'ls -lR $(Pipeline.Workspace)'
-    displayName: 'ls workspace'
+  - bash: 'ls -lR src/bin'
+    displayName: 'ls bin'
 
   - task: GitHubRelease@0
     inputs:
       gitHubConnection: github-release
-      assets: $(Pipeline.Workspace)/**/*.txt
+      assets: $(Pipeline.Workspace)/**/*.nupkg
       tagSource: manual
       tag: $(Build.SourceBranchName)
