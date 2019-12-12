@@ -90,7 +90,7 @@ jobs:
   - bash: 'ci/make-nuget-package.sh $(Build.SourceBranchName)'
     displayName: Build package
 
-  - bash: 'ls -lR src/bin'
+  - bash: 'ls -lR lib/bin'
     displayName: 'ls bin'
 
   - task: GitHubRelease@0
